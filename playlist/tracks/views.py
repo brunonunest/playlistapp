@@ -16,31 +16,35 @@ from rest_framework import viewsets, permissions, generics
 class TrackViewSet(viewsets.ModelViewSet):
     queryset = Track.objects.all()
     serializer_class = TrackSerializer
-    #authentication_classes = [BasicAuthentication, SessionAuthentication, ]
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+    authentication_classes = [BasicAuthentication, SessionAuthentication, ]
+    permission_classes = [permissions.IsAdminUser]
 
 
 class TrackView(generics.RetrieveAPIView):
-    serializer_class = TrackSerializer
-    #authentication_classes = [BasicAuthentication, SessionAuthentication, ]
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+    serializer_class = TrackSerializer, ProducerSerializer, LabelSerializer
+    authentication_classes = [BasicAuthentication, SessionAuthentication, ]
+    permission_classes = [permissions.IsAuthenticated]
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'tracks.html'
 
     def get(self, request, *args, **kwargs):
         items = Track.objects.all()
-        return Response({'items': items})
+        labels = Label.objects.all()
+        producers = Producer.objects.all()
+        return Response({'items': items, 'labels': labels, 'producers': producers})
 
 
 class ProducerViewSet(viewsets.ModelViewSet):
     queryset = Producer.objects.all()
     serializer_class = ProducerSerializer
+    authentication_classes = [BasicAuthentication, SessionAuthentication, ]
+    permission_classes = [permissions.IsAdminUser]
 
 
 class ProducerView(generics.RetrieveAPIView):
     serializer_class = ProducerSerializer
-    #authentication_classes = [BasicAuthentication, SessionAuthentication, ]
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+    authentication_classes = [BasicAuthentication, SessionAuthentication, ]
+    permission_classes = [permissions.IsAuthenticated]
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'producers.html'
 
@@ -50,8 +54,8 @@ class ProducerView(generics.RetrieveAPIView):
 
 
 class LabelViewSet(viewsets.ModelViewSet):
-    #authentication_classes = [BasicAuthentication, SessionAuthentication, ]
-    #permission_classes = [permissions.IsAdminUser, ]
+    authentication_classes = [BasicAuthentication, SessionAuthentication, ]
+    permission_classes = [permissions.IsAdminUser]
     queryset = Label.objects.all()
     serializer_class = LabelSerializer
 
@@ -59,7 +63,7 @@ class LabelViewSet(viewsets.ModelViewSet):
 class LabelView(generics.RetrieveAPIView):
     serializer_class = LabelSerializer
     authentication_classes = [BasicAuthentication, SessionAuthentication, ]
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+    permission_classes = [permissions.IsAuthenticated]
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'labels.html'
 
