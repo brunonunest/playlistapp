@@ -5,9 +5,15 @@
 
 <h1>Playlist</h1>
 <ul>
+    <li>
     {% for p in items %}
-    <li>{{ p.name }} | {{ p.link }} | {{ p.producer }}</li>
-    {% endfor %}
+        <br/>{{ p.name }} | {% for d in p.producer.all %}
+        {{ d }} |
+                {% endfor %}
+        {{ p.link }}
+                {% endfor %}
+    </li>
+
 
 </ul>
 {% endblock %}
