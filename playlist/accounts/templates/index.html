@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Auth System | Playlist</title>
+</head>
+<body>
+    {% block content %}
+        <h1>Welcome to My Playlist</h1>
+        <font size="-0.5">This is my Playlist, check it for really good underground/bass tracks...<br />
+            Please login first to get access, read only!
+        </font><br />
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+
+            {% else %}
+            <a href="{% url 'login_url' %}">Login</a>
+            <a href="{% url 'register_url' %}">Register</a>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <button onclick="window.location.href = 'http://127.0.0.1:8000/gotoplaylist/tracks/';">Access Playlist</button>
+        {% endif %}
+    {% endblock %}
+</body>
+</html>

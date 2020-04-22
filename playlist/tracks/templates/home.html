@@ -1,8 +1,17 @@
-<html><body>
-<h1>Profiles</h1>
-<ul>
-    {% for p in items %}
-    <li>{{ p.name }}</li>
-    {% endfor %}
-</ul>
-</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Auth System | Book Catalog</title>
+</head>
+<body>
+    {% block content %}
+        <h1>Welcome to Our's Book Catalog</h1>
+        <font size="-0.5">This catalog is completely customizable, login <br />
+        or register yourself to put in some new books, update then,<br />
+         delete the bad ones, maybe add some nice reviews...<br />
+            and tell us if you read it too!
+        </font><br />
+    {% endblock %}
+</body>
+</html>

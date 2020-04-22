@@ -29,7 +29,7 @@ class Track(models.Model):
 class Label(models.Model):
     name = models.CharField(max_length=50)
     link = models.URLField(default=None)
-    tracks = models.ForeignKey(Track, on_delete=models.CASCADE)
+    producers = models.ForeignKey(Producer, on_delete=models.CASCADE, default=None)
 
     class Meta:
         ordering = ['name']

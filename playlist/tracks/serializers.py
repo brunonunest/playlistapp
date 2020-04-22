@@ -5,7 +5,7 @@ from rest_framework import serializers
 class LabelSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Label
-        fields = ('id', 'url', 'name', 'link', 'tracks')
+        fields = ('id', 'url', 'name', 'link', 'producers')
 
 
 class TrackSerializer(serializers.HyperlinkedModelSerializer):
