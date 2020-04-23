@@ -12,9 +12,11 @@
                 {% for d in p.producer.all %}
                 <td><center>{{ d }}</center></td>
                 {% endfor %}
-                <td><center><button type="button" href="{{ p.link }}" class="btn btn-success">Spotify</button></center></td>
+                <td><center><a href="{{ p.link }}" class="btn btn-info" role="button">Spotify</a>
+</center></td>
             </tr>
                 {% endfor %}
+            </table>
 
 
 {% endblock %}
