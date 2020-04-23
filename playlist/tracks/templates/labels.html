@@ -1,8 +1,17 @@
-<html><body>
-<h1>Labels</h1>
-<ul>
-    {% for p in items %}
-    <li>{{ p.name }}</li>
-    {% endfor %}
-</ul>
+{% extends 'index.html' %}
+<html><body style="background-color:grey;">
+{% block content %}
+        <table class="table table-striped table-dark table-bordered">
+            <td><center>LABEL:</center></td>
+            <td><center>PRODUCERS:</center></td>
+            <td><center>LINK:</center></td>
+            <tr>
+            {% for p in items %}
+                <td><center>{{ p.name }}</center></td>
+                <td><center>{{ p.producers }}</center></td>
+                <td><center><a href="{{ p.link }}" class="btn btn-info" role="button">Label</a></center></td>
+            </tr>
+            {% endfor %}
+         </table>
+{% endblock %}
 </body></html>

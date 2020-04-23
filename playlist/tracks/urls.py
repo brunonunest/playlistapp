@@ -9,7 +9,6 @@ router.register(r'track', views.TrackViewSet)
 router.register(r'label', views.LabelViewSet)
 
 urlpatterns = [
-    #path('', views.HomeView.as_view()),
     path('labels/', views.LabelView.as_view()),
     path('producers/', views.ProducerView.as_view()),
     path('tracks/', views.TrackView.as_view()),
