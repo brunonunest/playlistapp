@@ -4,17 +4,17 @@
 {% block content %}
 
 <h1>Playlist</h1>
-<ul>
-    <li>
+        <table class="table table-striped table-dark table-bordered">
     {% for p in items %}
-        <br/>{{ p.name }} | {% for d in p.producer.all %}
-        {{ d }} |
+            <tr>
+                <td><center>{{ p.name }}</center></td>
+                {% for d in p.producer.all %}
+                <td><center>{{ d }}</center></td>
                 {% endfor %}
-        {{ p.link }}
+                <td>{{ p.link }}</td>
+            </tr>
                 {% endfor %}
-    </li>
+        </table>
 
-
-</ul>
 {% endblock %}
 </body></html>
