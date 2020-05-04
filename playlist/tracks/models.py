@@ -1,3 +1,5 @@
+from shlex import join
+
 from django.conf import settings
 from django.db import models
 
@@ -18,6 +20,10 @@ class Track(models.Model):
     link = models.URLField(default=None)
     producer = models.ManyToManyField(
         Producer)
+
+    def producers(self):
+        for p in self.producer.all():
+            return p
 
     class Meta:
         ordering = ['name']

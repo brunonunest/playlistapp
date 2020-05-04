@@ -15,8 +15,7 @@ class LabelinLine(admin.TabularInline):
 class ProducerAdmin(admin.ModelAdmin):
     inlines = [LabelinLine, TrackinLine]
     list_display = ('name', 'link',)
-    list_display_links = ('name', 'link',)
-    #list_editable =
+    list_display_links = ('name',)
     list_filter = ('name',)
     search_fields = ('name',)
     fieldsets = (
@@ -29,13 +28,41 @@ class ProducerAdmin(admin.ModelAdmin):
     )
 
 
-    def combine_name_producer(self, obj):
-        return "{} - {}".format(obj.name, obj.producer)
+class LabelAdmin(admin.ModelAdmin):
+    list_display = ('name', 'link','producers')
+    list_display_links = ('name',)
+    list_filter = ('name',)
+    search_fields = ('name',)
+    fieldsets = (
+        (None, {
+            'fields': (
+                'name',
+                'link',
+                'producers',
+            )
+        }),
+    )
+
+
+class TrackAdmin(admin.ModelAdmin):
+    list_display = ('name', 'link', 'producers')
+    list_display_links = ('name',)
+    list_filter = ('name', 'producer')
+    search_fields = ('name',)
+    fieldsets = (
+        (None, {
+            'fields': (
+                'name',
+                'link',
+                'producer',
+            )
+        }),
+    )
 
 
 admin.site.register(Producer, ProducerAdmin)
-admin.site.register(Track)
-admin.site.register(Label)
+admin.site.register(Track, TrackAdmin)
+admin.site.register(Label, LabelAdmin)
 
 
 
